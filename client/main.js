@@ -1,1 +1,1 @@
-import'plante_systeme/imports/ui/app.js';
+import'projet_meteor/imports/ui/app.js';

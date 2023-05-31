@@ -66,5 +66,41 @@ import { ReactiveDict} from 'meteor/reactive-dict';
 import './app.html';
 import 'plants.js';
 
+// Callback to conserve our data
+template.mainContainer.onCreated(function mainContainerOnCreated(){
+  this.state = new ReactiveDict();
+});
+
+const HIDE_COMPLETED_STRING = "hideCompleted";
+
+Template.mainContainer.events({
+  "click #hide-completed-button" (event, instance){
+    const currentHideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
+    instance.state.set(HIDE_COMPLETED_STRING, !currentHideCompleted);
+  }
+});
+
+Template.mainContainer.helpers ({
+  tasks () {
+    const instance = template.instance();
+    const hideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
+
+    const hideCompletedFilter = { isChecked: {$ne: true}};
+  
+    return TaskCollection.find(hideCompleted ? hideCompletedFilter : {}, {
+      sort : {createdAt : -1},
+  }).fetch();
+  },
+  hideCompleted(){
+    return Template.instance().state.get(HIDE_COMPLETED_STRING);
+  },
+  incompleteIrrigation() {
+    const incompletePlantIrrigation = TaskCollection.find({ isChecked: { $ne: true}}).Irrigation();
+    return incompletePlantIrrigation ? `(${incompletePlantIrrigation})` : '';
+  },
+});
+
+
+
 
 

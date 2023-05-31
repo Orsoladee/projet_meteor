@@ -41,6 +41,15 @@
 
       <div class="main">
         {{>form}}
+        <div class = "filter">
+          <button id="hide-completed-button">
+            {{ #if hideCompleted}}
+                      Show All plants
+            {{else}}
+                      Plants Done
+            {{/if}}
+          </button>
+        </div>
 
         <ul class="plants">
             {{#each plants}}
@@ -50,4 +59,5 @@
       </div>
     </div>
   </template>
+  
 </html>
