@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <Title></Title>
+  </head>
+  <body>
+    {{> mainContainer}}
+  </body>
+  <template name = "mainContainer">
+    <div class="container">
+        <header>
+          <h1> Plant System</h1>
+        </header>
+
+        {{> form }}
+
+        <ul>
+          {{#each task}}
+              {{>task}}
+          {{/each}}
+        </ul>
+    </div>
+  </template>
+
+  <template name = "form">
+    <form class = "plant-form">
+      <input type="text" name="text" placeholder="Type to add a new plant"/>
+      <button type = "submit"> Add a plant</button>
+    </form>
+  </template>
+
+  <template name="mainContainer">
+    <div class="app">
+      <header>
+        <div class="app-bar">
+           <div class="app-header">
+             <h1> Your plants </h1>
+           </div>
+         </div>
+      </header>
+
+      <div class="main">
+        {{>form}}
+
+        <ul class="plants">
+            {{#each plants}}
+                {{> plant}}
+            {{/each}}
+        </ul>
+      </div>
+    </div>
+  </template>
+</html>
