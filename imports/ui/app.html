@@ -7,6 +7,7 @@
     {{> mainContainer}}
   </body>
   <template name = "mainContainer">
+
     <div class="container">
         <header>
           <h1> Plant System</h1>
@@ -20,16 +21,7 @@
           {{/each}}
         </ul>
     </div>
-  </template>
 
-  <template name = "form">
-    <form class = "plant-form">
-      <input type="text" name="text" placeholder="Type to add a new plant"/>
-      <button type = "submit"> Add a plant</button>
-    </form>
-  </template>
-
-  <template name="mainContainer">
     <div class="app">
       <header>
         <div class="app-bar">
@@ -40,24 +32,44 @@
       </header>
 
       <div class="main">
+        {{#if isUserLogged}}
+            <div class="user">
+              {{getUser.Username}} <i class="fa-solid fa-door-closed"></i>
+            </div>
         {{>form}}
         <div class = "filter">
           <button id="hide-completed-button">
             {{ #if hideCompleted}}
                       Show All plants
             {{else}}
-                      Plants Done
+                      Plants Irrigated
             {{/if}}
           </button>
         </div>
+      
+      
 
         <ul class="plants">
             {{#each plants}}
                 {{> plant}}
             {{/each}}
         </ul>
+    {{else}}
+        {{>login}}
+    {{/if}}
       </div>
     </div>
+  </template>
+
+  <template name = "form">
+    <form class = "plant-form">
+      <input type="text" name="text" placeholder="Type to add a new plant"/>
+      <button type = "submit"> Add a plant</button>
+    </form>
+  </template>
+
+  <template name="mainContainer">
+   
   </template>
   
 </html>

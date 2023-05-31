@@ -1,23 +1,47 @@
 import {Template} from 'meteor/templating';
 import { plantCollection } from './api/plantCollection';
-import './app.html';
+import { ReactiveDict} from 'meteor/reactive-dict';
+import "./app.html";
+import "./plants.js";
+import "./login.js";
 import { template } from 'underscore';
 
+const HIDE_COMPLETED_STRING = "hideCompleted";
+
+// helper isUserLogged - login template
+const getUser = () => Meteor.user();
+const isUserLogged = () => !!getUser();
+
+// Filter the plants - Owner
+const getPlantsFilter = () => {
+  const user = getUser();
+  const hideCompletedFilter = { isChecked:  {$ne: true }};
+  const userFilter = user ? { userId : user._id} : {};
+  const pendingOnlyFilter = { hideCompletedFilter, userFilter};
+  return {userFilter, pendingOnlyFilter};
+};
+
+// Callback to conserve our data
+Template.mainContainer.onCreated(function mainContainerOnCreated(){
+  this.state = new ReactiveDict();
+});
+
+
 Template.mainContainer.helpers({
-  tasks : [
+  plants : [
     { text: 'This is the plant Aloevera'},
     { text: 'This is the plant Cactus'},
     { text: 'This is the plant Crassula'},
   ],
-});
+}),
 
-template.mainContainer.helpers({
-  tasks() {
+Template.mainContainer.helpers({
+  plants() {
     return plantCollection.find({}, { sort: { createdAt: -1} });
   },
 });
 
-template.form.events({
+Template.form.events({
   "submit .plant-form" (event){
     // prevent default browser form submit
     event.preventDefault();
@@ -26,52 +50,31 @@ template.form.events({
     const target = event.target;
     const text = event.text.value;
 
-    // insert a task into the collection
+    // insert a plant into the collection
     plantCollection.insert ({
       text,
+      userId: getUser()._id,
       createdAt: new Date(), // current time
     });
 
     //clear form
     target.text.value = '';
+    }
+  });
+
+Template.mainContainer.events({
+  'click. user'() {
+    Meteor.logout();
   }
 });
+ 
 
-template.mainContainer.helpers({
-  tasks() {
-    return plantCollection.find({}, { sort: { createdAt: -1} });
-  },
-});
-
-template.form.events ({}); 
-
-import {Template} from 'meteor/templating';
-import { plantCollection } from './api/plantCollection';
-import './app.html';
-import 'plants.js';
-
-template.plants.event ({
+Template.plants.event ({
 'click. delete' () {
   plantCollection.remove(this._id)
 }
 });
 
-
-template.mainContainer.helpers({});
-
-import {Template} from 'meteor/templating';
-import { plantCollection } from './api/plantCollection';
-import { ReactiveDict} from 'meteor/reactive-dict';
-
-import './app.html';
-import 'plants.js';
-
-// Callback to conserve our data
-template.mainContainer.onCreated(function mainContainerOnCreated(){
-  this.state = new ReactiveDict();
-});
-
-const HIDE_COMPLETED_STRING = "hideCompleted";
 
 Template.mainContainer.events({
   "click #hide-completed-button" (event, instance){
@@ -80,14 +83,19 @@ Template.mainContainer.events({
   }
 });
 
+
 Template.mainContainer.helpers ({
-  tasks () {
+  plants () {
     const instance = template.instance();
     const hideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
 
-    const hideCompletedFilter = { isChecked: {$ne: true}};
-  
-    return TaskCollection.find(hideCompleted ? hideCompletedFilter : {}, {
+    const {pendingOnlyFilter, userFilter} = getPlantsFilter();
+
+    if (!isUserLogged()){
+      return [];
+    }
+
+    return plantCollection.find(hideCompleted ?pendingOnlyFilter : userFilter, {
       sort : {createdAt : -1},
   }).fetch();
   },
@@ -95,10 +103,16 @@ Template.mainContainer.helpers ({
     return Template.instance().state.get(HIDE_COMPLETED_STRING);
   },
   incompleteIrrigation() {
-    const incompletePlantIrrigation = TaskCollection.find({ isChecked: { $ne: true}}).Irrigation();
+    const incompletePlantIrrigation = TaskCollection.find(pendingOnlyFilter).Irrigation();
     return incompletePlantIrrigation ? `(${incompletePlantIrrigation})` : '';
   },
+
+  isUserLogged() {
+    return isUserLogged();
+  }
 });
+
+
 
 
 
