@@ -1,6 +1,8 @@
 import {Template} from 'meteor/templating';
 import { plantCollection } from './api/plantCollection';
 import { ReactiveDict} from 'meteor/reactive-dict';
+import { Meteor } from 'meteor/meteor';
+
 import "./app.html";
 import "./plants.js";
 import "./login.js";

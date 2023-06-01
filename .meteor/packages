@@ -25,3 +25,5 @@ hot-module-replacement  # Update code in development without reloading the page
 blaze-hot               # Update files using Blaze's API with HMR
 reactive-dict
 accounts-password
+ostrio:flow-router-extra
+kadira:blaze-layout

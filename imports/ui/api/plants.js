@@ -4,7 +4,7 @@ import { plantCollection } from './plantCollection';
 
 import './plants.html';
 
-Template.task.events ({
+Template.plant.events ({
   'click.toggle-checked'() {
     //set the checked property
     plantCollection.update(this._id, {
@@ -13,6 +13,6 @@ Template.task.events ({
   },
 });
 
-Template.task.events({
+Template.plant.events({
 
-})
+});
