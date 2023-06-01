@@ -2,6 +2,12 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts} from 'meteor/accounts-base';
 import { plantCollection } from '../imports/ui/api/plantCollection';
 
+import './routes.js';
+import './mainLayout.html';
+import './home.html';
+import '/plantLibrary.html';
+import '/about.html';
+
 const insertPlant = (plantText, user) =>
   plantCollection.insert({
     text: plantText,
