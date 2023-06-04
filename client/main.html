@@ -13,6 +13,28 @@
             </div>
           </div>
         </header>
+    <template name="plants">
+      <ul>
+        {{#each plants}}
+          <li>
+            <strong>{{name}}</strong> - {{emplacement}} - {{plant-irrigation-period}} - {{plant-irrigation-quantity}}
+            {{#if photoUrl}}
+              <img src="{{photoUrl}}" alt="Picture of the plant">
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+
+      <form>
+        <input type="text" class="plant-name" placeholder="Name of the plant">
+        <input type="text" class="plant-emplacement" placeholder="Emplacement of the plant">
+        <input type="text" class="plant-irrigation-period" placeholder="Irrigation's period of the plant">
+        <input type="text" class="plant-irrigation-quantity" placeholder="Irrigation's quantity of the plant">
+        <input type="file" class="plant-photo" accept="image/*">
+        <button class="insert-plant"> Ajouter cette plante</button>
+      </form>
+    <!--afficher infos plantes-->
+    </template>
       </div>
     </template>
   </body>
