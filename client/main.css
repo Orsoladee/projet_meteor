@@ -161,4 +161,28 @@ margin-right: 1em;
   align-self: flex-end;
   margin: 8px 16px 0;
   font-weight: bold;
-}
+};
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+};
+
+.main-layout {
+  background-color: #d1cece;
+  border: 1px solid #afacac;
+  border-radius: 5px;
+  padding: 20px;
+};
+
+.main-layout h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+};
+
+.main-layout p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+};
