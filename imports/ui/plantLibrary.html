@@ -8,6 +8,16 @@
       <h1> Here Is Your Plant Library</h1>
       <a href="{{path 'home'}}" class="{{isActiveRoute 'home'}}">Home</a>
       <a href="{{path 'about'}}" class="{{isActiveRoute 'about'}}">About Us!</a>
+      <ul>
+        {{#each plants}}
+          <li>
+            <strong>{{name}}</strong> - {{emplacemement}} - {{plant-irrigation-period}} - {{plant-irrigation-quantity}}
+            {{#if photoUrl}}
+              <img src="{{photoUrl}}" alt="Picture of the plant">
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
 <!--contenu de la librairie-->
     </template>
   </body>

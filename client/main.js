@@ -3,12 +3,21 @@ import { Template } from 'meteor/templating';
 import { Plants } from '/import/api/plants.js';
 
 import './main.html';
+import './routes.js';
+import './plantLibrary.html';
 
 Template.plants.helpers ({
   plants () {
     return Plants.find();
   },
 });
+
+Template.plantLibrary.helpers ({
+  plants() {
+    return Plants.find();
+  },
+});
+
 
 Template.plants.events({
   'click .insert-plant'(event, template){
@@ -57,3 +66,5 @@ Template.plants.events({
 // Inclure lors de l'insertion   
   },
 });
+
+
