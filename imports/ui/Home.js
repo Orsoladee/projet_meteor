@@ -21,6 +21,17 @@ Template.home.helpers({
 Template.home.events({
   'click .deletePlant' (event, template) {
     const plantName = event.target.dataset.id;
+    template.$('.confirmation').Addclass('show');
+    template.$('.delete-button').data('plantName', plantName);
+  },
+
+  'click.cancelDelete' (event, template) {
+    template.$('confirmation').removeClass('show');
+    template.$('.delete-button').removeData('plantName');
+  }, 
+
+    'click .confirmDelete'(event, template) {
+      const plantName = template.$('confirmation').data('plantName');
     Plants.remove(plantName, (error) => {
       if (error) {
         Swal.fire({
@@ -35,6 +46,8 @@ Template.home.events({
           text: 'The plant was successfully deleted',
         });
       };
-    })
+    });
+    template.$('confirmation').removeClass('show');
+    template.$('delete.button').removeData('plantName');
   },
 });

@@ -49,11 +49,12 @@ Template.plants.events({
           console.log('Erreur de téléchargement du fichier :', error);
         } else {
           const photoUrl = 'cdn/storage/Images/${fileObj._id}/${fileObj. name()}';
-          Plants.insert({ name, emplacement, plantIrrigationPeriod, plantIrrigationQuantity, photoUrl});
+          Plants.insert({ name, emplacement, plantIrrigationPeriod, plantIrrigationQuantity, lastIrrigation, photoUrl});
           template.find('.plant-name').value = '';
           template.find('.plant-emplacement').value = '';
           template.find('.plant-irrigation-period').value = '';
           template.find('.plant-irrigation-quantity').value = '';
+          template.find('.last-irrigation').value = '';
           template.find('.plant-picture').value ='';
         }
       });
@@ -61,7 +62,7 @@ Template.plants.events({
 
       upload.start();
     } else {
-      Plants.insert({name, emplacement, plantIrrigationPeriod, plantIrrigationQuantity, photoUrl});
+      Plants.insert({name, emplacement, plantIrrigationPeriod, plantIrrigationQuantity, lastIrrigation, photoUrl});
       template.find('.plant-name').value = '';
       template.find('.plant-emplacement').value = '';
       template.find('.plant-irrigation-period').value = '';
@@ -71,7 +72,7 @@ Template.plants.events({
     
 
 
-    Meteor.call('plants.insert', { name, emplacement, plantIrrigationPeriod, plantIrrigationQuantity });
+    Meteor.call('plants.insert', { name, emplacement, plantIrrigationPeriod, plantIrrigationQuantity, lastIrrigation, photoUrl });
 // Inclure lors de l'insertion   
   },
 });
