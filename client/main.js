@@ -1,11 +1,15 @@
 import'projet_meteor/imports/ui/app.js';
 import { Template } from 'meteor/templating';
 import { Plants } from '/import/api/plants.js';
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
 import './main.html';
 import './main.css';
 import './routes.js';
 import './plantLibrary.html';
+import './home.html';
+import './home.js';
 
 Template.plants.helpers ({
   plants () {

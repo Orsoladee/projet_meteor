@@ -13,7 +13,7 @@ body {
   margin: 0;
 
   font-size: 14px;
-};
+}
 
 button {
   font-weight: bold;
@@ -23,24 +23,24 @@ button {
   box-shadow: 0 3px 3px rgba(34, 25, 25, 0.4);
   padding: 5px;
   cursor: pointer;
-};
+}
 
 button:focus {
   outline: 0;
-};
+}
 
 .app {
   display: flex;
   flex-direction: column;
   height: 100vh;
-};
+}
 
 .app-header {
   flex-grow: 1;
   white-space: nowrap;
   overflow : hidden;
   text-overflow: ellipsis;
-};
+}
 
 .main{
   display: flex;
@@ -48,13 +48,13 @@ button:focus {
   flex-grow: 1;
   overflow: auto;
   background: rgb(144, 221, 144);
-};
+}
 
 .main ::-webkit-scrollbar {
   width: 0;
   height: 0;
   background: inherit;
-};
+}
 
 header {
   background: #d2edf4;
@@ -62,24 +62,24 @@ header {
   padding: 20px 15px 15px 15px;
   position: relative;
   box-shadow: 0 3px 3px rgba(34, 25, 25, 0.4);
-};
+}
 
 .app-bar {
   display: flex;
   justify-content: space-between;
-};
+}
 
 .app-bar h1{
 font-size: 1.5em;
 margin: 0;
 display: inline-block;
 margin-right: 1em;
-};
+}
 
 .plants-form{
   margin: 16px;
   display: flex;
-};
+}
 
 .plants-form > input {
   flex-grow: 1;
@@ -90,11 +90,11 @@ margin-right: 1em;
   width: 100%;
   font-size: 1em;
   margin-right: 16px;
-};
+}
 
 .plants-form > input:focus {
   outline: 0;
-};
+}
 
 .plants {
   list-style-type: none;
@@ -103,21 +103,21 @@ margin-right: 1em;
   padding-right: 16px;
   margin-block-start: 0;
   margin-block-end: 0;
-};
+}
 
 .plants >li > span {
   flex-grow: 1;
-};
+}
 
 .plants > li > button {
   justify-self: flex-end;
   background-color: #ff3046;
-};
+}
 
 .filter {
   display: flex;
   justify-content: center;
-};
+}
 
 .login-form {
   display: flex;
@@ -126,15 +126,15 @@ margin-right: 1em;
 
   justify-content: center;
   align-items: center;
-};
+}
 
 .login-form > div {
   margin: 8px;
-};
+}
 
 .login-form>div>label {
   font-weight: bold;
-};
+}
 
 .login-form>div>input {
   flex-grow: 1;
@@ -146,43 +146,55 @@ margin-right: 1em;
   font-size: 1em;
   margin-right: 16px;
   margin-top: 4px;
-};
+}
 
 .login-form>div> input:focus{
   outline: 0;
-};
+}
 
 .login-form > div> button {
   background-color: rgb(4, 71, 4);
-};
+}
 
 .user {
   display: flex;
   align-self: flex-end;
   margin: 8px 16px 0;
   font-weight: bold;
-};
+}
 
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-};
+}
 
 .main-layout {
   background-color: #d1cece;
   border: 1px solid #afacac;
   border-radius: 5px;
   padding: 20px;
-};
+}
 
 .main-layout h1 {
   font-size: 24px;
   margin-bottom: 10px;
-};
+}
 
 .main-layout p {
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 10px;
-};
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color : yellow;
+}
+
+.red {
+  color: red;
+}

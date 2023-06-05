@@ -4,10 +4,33 @@
     <title>Plant App</title>
   </head>
   <body>
-    <template name="Home">
+  <template name="Home">
+    <div class="container">
       <h1>Welcome here to the Home Page !</h1>
       <a href="{{path 'plantLibrary'}}" class="{{isActiveRoute 'plantLibrary'}}">Your Plant Library</a>
       <a href="{{path 'about'}}" class="{{isActiveRoute 'about'}}">About Us!</a>
+
+      <p>Here is your current informations : </p>
+      <ul>
+        {{#each plants}}
+          <li class="{{getPlantState lastIrrigation}}"> 
+            <img src="{{photoUrl}}" alt="{{name}}">
+            Name of the plant : {{name}}, Emplacement : {{emplacement}}, 
+            Plant Irrigation quantity : {{plantIrrigationQuantity}}, Irrigation period : {{plantIrrigationPeriod}},
+            Last irrigation : {{lastIrrigation}}
+            <button class="newIrrigation" data-id="{{_id}}">Instant Irrigation</button>
+            <button class="deletePlant" data-id="{{_id}}">Delete this Plant</button>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="confirmation-request">
+      <div class="request-content">
+        <h3> Are you sur you want to remove this plant ?</h3>
+        <button class="confirmation-delete">Delete</button>
+        <button class="undelete">Cancel</button>
+      </div>
+    </div>
 <!-- contenu page accueil-->
     </template>
   </body>
