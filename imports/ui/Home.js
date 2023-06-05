@@ -51,3 +51,20 @@ Template.home.events({
     template.$('delete.button').removeData('plantName');
   },
 });
+
+Template.home.events({
+  'click .add-new-plant'(event, template) {
+    template.$('add-plant-form').removeClass('hidden');
+  },
+
+  'click .save-plant' (event, template) {
+    const plantName = template.$('.new-plant-name').val();
+    
+    if(plantName) {
+      Plants.insert({ name : plantName});
+
+      template.$('new-plant-name').val('');
+      template.$('add-plant-form').addClass('hidden');
+    }
+  },
+})
